@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     var password: String? {
         loginView.passwordTextField.text
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -89,8 +90,8 @@ extension LoginViewController {
             subtitleLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             subtitleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
-        
     }
+    
     private func setupLoginView() {
         view.addSubview(loginView)
         NSLayoutConstraint.activate([

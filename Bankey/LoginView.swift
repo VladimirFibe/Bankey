@@ -46,6 +46,7 @@ extension LoginView {
         stackView.addArrangedSubview(usernameTextField)
         usernameTextField.placeholder = "Username"
         usernameTextField.delegate = self
+        usernameTextField.text = "Kevin"
     }
     
     private func setupPasswordTextField() {
@@ -53,6 +54,7 @@ extension LoginView {
         passwordTextField.placeholder = "Password"
         passwordTextField.delegate = self
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.text = "Welcome"
     }
     
     private func setupDividerView() {
