@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Bankey
-//
-//  Created by MacService on 7/11/23.
-//
-
 import UIKit
 
 @main
