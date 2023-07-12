@@ -1,11 +1,17 @@
 import UIKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func didLogin()
+}
+
 class LoginViewController: UIViewController {
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     var username: String? {
         loginView.usernameTextField.text
@@ -37,6 +43,10 @@ extension LoginViewController {
             configure(withMessage: "Username / password cannot be blank")
         } else if username == "Kevin" && password == "Welcome" {
             signInButton.configuration?.showsActivityIndicator = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.signInButton.configuration?.showsActivityIndicator = false
+                self.delegate?.didLogin()
+            }
         } else {
             configure(withMessage: "Incorrect username / password")
         }

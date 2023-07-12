@@ -4,10 +4,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    let loginViewController = LoginViewController()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = OnboardingContainer()
+        loginViewController.delegate = self
+        window?.rootViewController = loginViewController
         window?.makeKeyAndVisible()
     }
 
@@ -40,3 +43,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+extension SceneDelegate: LoginViewControllerDelegate {
+    func didLogin() {
+        print("Yes!!!")
+    }
+    
+    
+}
