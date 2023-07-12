@@ -58,9 +58,9 @@
 		E88B2A892A5D242500B83D7A /* Bankey */ = {
 			isa = PBXGroup;
 			children = (
+				E8A0854E2A5E384500CCD708 /* App */,
 				E8A0854A2A5E317B00CCD708 /* Feature */,
 				E88B2A9E2A5D276900B83D7A /* Supporting Files */,
-				E88B2A9F2A5D277E00B83D7A /* App */,
 			);
 			path = Bankey;
 			sourceTree = "<group>";
@@ -73,15 +73,6 @@
 				E88B2A982A5D242800B83D7A /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E88B2A9F2A5D277E00B83D7A /* App */ = {
-			isa = PBXGroup;
-			children = (
-				E88B2A8A2A5D242500B83D7A /* AppDelegate.swift */,
-				E88B2A8C2A5D242500B83D7A /* SceneDelegate.swift */,
-			);
-			name = App;
 			sourceTree = "<group>";
 		};
 		E8A085462A5E310900CCD708 /* Onboarding */ = {
@@ -108,6 +99,15 @@
 				E88B2AA22A5D285600B83D7A /* LoginView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		E8A0854E2A5E384500CCD708 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E88B2A8A2A5D242500B83D7A /* AppDelegate.swift */,
+				E88B2A8C2A5D242500B83D7A /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
