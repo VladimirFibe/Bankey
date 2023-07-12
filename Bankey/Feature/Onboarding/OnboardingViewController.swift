@@ -1,9 +1,22 @@
 import UIKit
 
-class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIViewController {
+    let heroImageName: String
+    let titleText: String
+    
     let stackView = UIStackView()
     let imageView = UIImageView()
     let label = UILabel()
+    
+    init(heroImageName: String, titleText: String) {
+        self.heroImageName = heroImageName
+        self.titleText = titleText
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +47,13 @@ extension OnboardingViewController {
     
     private func setupImageView() {
         stackView.addArrangedSubview(imageView)
-        imageView.image = UIImage(resource: .delorean)
+        imageView.image = UIImage(named: heroImageName)
         imageView.contentMode = .scaleAspectFit
     }
     
     private func setupLabel() {
         stackView.addArrangedSubview(label)
-        label.text = "Bankey is faster, easier to use, and has a brand new lok and feel that will make you fell like you are back in 1989"
+        label.text = titleText
         label.font = .preferredFont(forTextStyle: .title3)
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
