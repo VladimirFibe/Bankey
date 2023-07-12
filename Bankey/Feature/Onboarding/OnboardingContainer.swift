@@ -1,10 +1,23 @@
 import UIKit
 
+protocol OnboardingContainerDelegate: AnyObject {
+    func didFinishOnboarding()
+}
+
 final class OnboardingContainer: UIViewController {
     let pageViewController: UIPageViewController
     var pages: [UIViewController] = []
-    var currentPage: UIViewController
+    var currentPage: UIViewController {
+        didSet {
+            leftButton.isHidden = pages.first == currentPage
+            rightButton.setTitle(pages.last == currentPage ? "Done" : "Next", for: [])
+        }
+    }
     let closeButton = UIButton(type: .system)
+    let leftButton = UIButton(type: .system)
+    let rightButton = UIButton(type: .system)
+    weak var delegate: OnboardingContainerDelegate?
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         
@@ -32,8 +45,24 @@ final class OnboardingContainer: UIViewController {
 }
 // MARK: - Actions
 extension OnboardingContainer {
-    @objc func closeTapped() {
-        
+    @objc func closeButtonTapped() {
+        self.delegate?.didFinishOnboarding()
+    }
+    
+    @objc func leftButtonTapped() {
+        guard let controller = getPreviousViewController(from: currentPage) else { return }
+        currentPage = controller
+        pageViewController.setViewControllers([currentPage], direction: .forward, animated: false)
+    }
+    
+    @objc func rightButtonTapped() {
+        if currentPage == pages.last {
+            self.delegate?.didFinishOnboarding()
+        } else {
+            guard let controller = getNextViewController(from: currentPage) else { return }
+            currentPage = controller
+            pageViewController.setViewControllers([currentPage], direction: .forward, animated: false)
+        }
     }
 }
 
@@ -42,6 +71,8 @@ extension OnboardingContainer {
     private func setupViews() {
         setupView()
         setupCloseButton()
+        setupLeftButton()
+        setupRightButton()
     }
     
     private func setupView() {
@@ -66,10 +97,33 @@ extension OnboardingContainer {
         view.addSubview(closeButton)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.setTitle("Close", for: [])
-        closeButton.addTarget(self, action: #selector(closeTapped), for: .primaryActionTriggered)
+        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .primaryActionTriggered)
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
             closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2)
+        ])
+    }
+    
+    private func setupLeftButton() {
+        view.addSubview(leftButton)
+        leftButton.translatesAutoresizingMaskIntoConstraints = false
+        leftButton.setTitle("Previous", for: [])
+        leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .primaryActionTriggered)
+        leftButton.isHidden = true
+        NSLayoutConstraint.activate([
+            leftButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: leftButton.bottomAnchor, multiplier: 4)
+        ])
+    }
+    
+    private func setupRightButton() {
+        view.addSubview(rightButton)
+        rightButton.translatesAutoresizingMaskIntoConstraints = false
+        rightButton.setTitle("Next", for: [])
+        rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .primaryActionTriggered)
+        NSLayoutConstraint.activate([
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: rightButton.trailingAnchor, multiplier: 2),
+            rightButton.bottomAnchor.constraint(equalTo: leftButton.bottomAnchor)
         ])
     }
 }

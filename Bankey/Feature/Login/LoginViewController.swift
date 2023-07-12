@@ -4,6 +4,10 @@ protocol LoginViewControllerDelegate: AnyObject {
     func didLogin()
 }
 
+protocol LogoutDelegate: AnyObject {
+    func didLogout()
+}
+
 class LoginViewController: UIViewController {
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
@@ -12,7 +16,6 @@ class LoginViewController: UIViewController {
     let errorMessageLabel = UILabel()
     
     weak var delegate: LoginViewControllerDelegate?
-    
     var username: String? {
         loginView.usernameTextField.text
     }
