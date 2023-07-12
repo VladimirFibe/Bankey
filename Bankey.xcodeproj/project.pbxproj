@@ -13,6 +13,7 @@
 		E88B2A942A5D242800B83D7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E88B2A932A5D242800B83D7A /* Assets.xcassets */; };
 		E88B2A972A5D242800B83D7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E88B2A952A5D242800B83D7A /* LaunchScreen.storyboard */; };
 		E88B2AA32A5D285600B83D7A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B2AA22A5D285600B83D7A /* LoginView.swift */; };
+		E8A085482A5E312F00CCD708 /* OnboardingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A085472A5E312F00CCD708 /* OnboardingContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E88B2A962A5D242800B83D7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E88B2A982A5D242800B83D7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E88B2AA22A5D285600B83D7A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E8A085472A5E312F00CCD708 /* OnboardingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +58,7 @@
 		E88B2A892A5D242500B83D7A /* Bankey */ = {
 			isa = PBXGroup;
 			children = (
-				E88B2AA02A5D27B900B83D7A /* Features */,
+				E8A0854A2A5E317B00CCD708 /* Feature */,
 				E88B2A9E2A5D276900B83D7A /* Supporting Files */,
 				E88B2A9F2A5D277E00B83D7A /* App */,
 			);
@@ -82,21 +84,30 @@
 			name = App;
 			sourceTree = "<group>";
 		};
-		E88B2AA02A5D27B900B83D7A /* Features */ = {
+		E8A085462A5E310900CCD708 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				E88B2AA12A5D27DF00B83D7A /* Login */,
+				E8A085472A5E312F00CCD708 /* OnboardingContainer.swift */,
 			);
-			name = Features;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		E88B2AA12A5D27DF00B83D7A /* Login */ = {
+		E8A0854A2A5E317B00CCD708 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				E8A0854D2A5E31E900CCD708 /* Login */,
+				E8A085462A5E310900CCD708 /* Onboarding */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		E8A0854D2A5E31E900CCD708 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				E88B2A8E2A5D242500B83D7A /* LoginViewController.swift */,
 				E88B2AA22A5D285600B83D7A /* LoginView.swift */,
 			);
-			name = Login;
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A085482A5E312F00CCD708 /* OnboardingContainer.swift in Sources */,
 				E88B2A8F2A5D242500B83D7A /* LoginViewController.swift in Sources */,
 				E88B2A8B2A5D242500B83D7A /* AppDelegate.swift in Sources */,
 				E88B2AA32A5D285600B83D7A /* LoginView.swift in Sources */,
