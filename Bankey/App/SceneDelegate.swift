@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         loginViewController.delegate = self
         onboardingController.delegate = self
         dummyController.delegate = self
-        window?.rootViewController = MainViewController()
+        window?.rootViewController = AccountSummaryViewController()
         window?.makeKeyAndVisible()
     }
     
