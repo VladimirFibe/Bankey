@@ -1,8 +1,37 @@
 import UIKit
 
 final class AccountSummaryCell: UITableViewCell {
+    
+    enum AccountType: String {
+        case Banking
+        case CreditCard
+        case Investment
+        
+        var balanceLabel: String {
+            switch self {
+            case .Banking: return "Current balance"
+            case .CreditCard: return "Balance"
+            case .Investment: return "Value"
+            }
+        }
+        
+        var color: UIColor {
+            switch self {
+            case .Banking: return .appColor
+            case .CreditCard: return .systemOrange
+            case .Investment: return .systemPurple
+            }
+        }
+    }
+    
+    struct ViewModel {
+        let accountType: AccountType
+        let accountName: String
+        let balance: Decimal
+    }
     static let id = "AccountSummaryCell"
     static let rowHeight: CGFloat = 112
+    var viewModel: ViewModel? = nil
     let typeLabel = UILabel()
     let underlineView = UIView()
     let nameLabel = UILabel()
@@ -19,10 +48,6 @@ final class AccountSummaryCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure(with title: String) {
-        typeLabel.text = title
     }
 }
 
@@ -126,5 +151,14 @@ extension AccountSummaryCell {
         rootString.append(centString)
         
         return rootString
+    }
+}
+
+extension AccountSummaryCell {
+    func configure(with viewModel: ViewModel) {
+        typeLabel.text = viewModel.accountType.rawValue
+        nameLabel.text = viewModel.accountName
+        underlineView.backgroundColor = viewModel.accountType.color
+        balanceLabel.text = viewModel.accountType.balanceLabel
     }
 }

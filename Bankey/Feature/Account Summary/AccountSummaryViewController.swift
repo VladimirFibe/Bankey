@@ -1,8 +1,7 @@
 import UIKit
 
 final class AccountSummaryViewController: UIViewController {
-    let games = ["Pacman", "Space Invaders", "Space Patrol"]
-    
+    var accounts: [AccountSummaryCell.ViewModel] = []
     let tableView = UITableView()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +14,8 @@ extension AccountSummaryViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
         setupTableView()
+        fetchData()
+        tableView.reloadData()
     }
     
     private func setupTableView() {
@@ -48,22 +49,40 @@ extension AccountSummaryViewController {
 // MARK: - UITableViewDelegate
 extension AccountSummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(games[indexPath.row])
     }
 }
 
 // MARK: - UITableViewDataSource
 extension AccountSummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AccountSummaryCell.id, for: indexPath) as? AccountSummaryCell else {
+        guard !accounts.isEmpty,
+            let cell = tableView.dequeueReusableCell(withIdentifier: AccountSummaryCell.id, for: indexPath) as? AccountSummaryCell else {
             return UITableViewCell()
         }
-                
-        cell.configure(with: games[indexPath.row])
+        let account = accounts[indexPath.row]
+        cell.configure(with: account)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        games.count
+        accounts.count
+    }
+}
+
+extension AccountSummaryViewController {
+    private func fetchData() {
+        let savings = AccountSummaryCell.ViewModel(accountType: .Banking,
+                                                   accountName: "Basic Savigns",
+                                                   balance: 100234.54)
+        let visa = AccountSummaryCell.ViewModel(accountType: .CreditCard,
+                                                   accountName: "Visa Avion Card",
+                                                   balance: 100234.54)
+        let investment = AccountSummaryCell.ViewModel(accountType: .Investment,
+                                                   accountName: "Tax-Free Saver",
+                                                   balance: 100234.54)
+        
+        accounts.append(savings)
+        accounts.append(visa)
+        accounts.append(investment)
     }
 }
