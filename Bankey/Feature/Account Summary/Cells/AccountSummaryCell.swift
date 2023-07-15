@@ -2,7 +2,7 @@ import UIKit
 
 final class AccountSummaryCell: UITableViewCell {
     static let id = "AccountSummaryCell"
-    static let rowHeight: CGFloat = 100
+    static let rowHeight: CGFloat = 112
     let typeLabel = UILabel()
     let underlineView = UIView()
     let nameLabel = UILabel()
@@ -94,8 +94,7 @@ extension AccountSummaryCell {
     private func setupBalanceAmountLabel() {
         balanceStackView.addArrangedSubview(balanceAmountLabel)
         balanceAmountLabel.textAlignment = .right
-        balanceAmountLabel.text = "$999000"
-        balanceAmountLabel.font = .preferredFont(forTextStyle: .body)
+        balanceAmountLabel.attributedText = makeFormattedBalance(dollars: "926,466", cents: "23")
     }
     
     private func setupChevronImageView() {
@@ -107,5 +106,25 @@ extension AccountSummaryCell {
             contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: chevronImageView.trailingAnchor, multiplier: 2),
             chevronImageView.leadingAnchor.constraint(equalToSystemSpacingAfter: balanceStackView.trailingAnchor, multiplier: 2)
         ])
+    }
+    
+    private func makeFormattedBalance(dollars: String, cents: String) -> NSMutableAttributedString {
+        let dollarSignAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.preferredFont(forTextStyle: .callout),
+            .baselineOffset: 8]
+        let dollarAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.preferredFont(forTextStyle: .title1)]
+        let centAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.preferredFont(forTextStyle: .footnote),
+            .baselineOffset: 8]
+
+        let rootString = NSMutableAttributedString(string: "$", attributes: dollarSignAttributes)
+        let dollarString = NSAttributedString(string: dollars, attributes: dollarAttributes)
+        let centString = NSAttributedString(string: cents, attributes: centAttributes)
+        
+        rootString.append(dollarString)
+        rootString.append(centString)
+        
+        return rootString
     }
 }
