@@ -20,6 +20,7 @@ extension AccountSummaryViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
+        tableView.backgroundColor = .appColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self

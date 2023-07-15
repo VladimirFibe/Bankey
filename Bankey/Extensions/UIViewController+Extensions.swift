@@ -2,9 +2,7 @@ import UIKit
 
 extension UIViewController {
     func setStatusBar() {
-        let height = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        let width = view.bounds.width
-        let statusBarSize = CGSize(width: width, height: height)
+        let statusBarSize = UIApplication.shared.statusBarFrame.size
         let frame = CGRect(origin: .zero, size: statusBarSize)
         let statusbarView = UIView(frame: frame)
         statusbarView.backgroundColor = .appColor

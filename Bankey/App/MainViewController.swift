@@ -11,7 +11,7 @@ final class MainViewController: UITabBarController {
 extension MainViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
-        let summaryController = UIViewController()
+        let summaryController = AccountSummaryViewController()
         let moneyController = DummyViewController()
         let moreController = DummyViewController()
         

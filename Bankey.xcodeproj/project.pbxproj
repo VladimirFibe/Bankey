@@ -24,6 +24,7 @@
 		E88B2AA32A5D285600B83D7A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B2AA22A5D285600B83D7A /* LoginView.swift */; };
 		E8A085482A5E312F00CCD708 /* OnboardingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A085472A5E312F00CCD708 /* OnboardingContainer.swift */; };
 		E8A085502A5E424400CCD708 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A0854F2A5E424400CCD708 /* OnboardingViewController.swift */; };
+		E8E466532A62A0C80050C47C /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E466522A62A0C80050C47C /* CurrencyFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		E88B2AA22A5D285600B83D7A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E8A085472A5E312F00CCD708 /* OnboardingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainer.swift; sourceTree = "<group>"; };
 		E8A0854F2A5E424400CCD708 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		E8E466522A62A0C80050C47C /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				E8A0854A2A5E317B00CCD708 /* Feature */,
 				E88B2A9E2A5D276900B83D7A /* Supporting Files */,
 				E827637B2A5EB1E000E565F4 /* LocalState.swift */,
+				E8E466522A62A0C80050C47C /* CurrencyFormatter.swift */,
 			);
 			path = Bankey;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				E85691522A5F9DD0004C2F0B /* AccountSummaryHeaderView.swift in Sources */,
 				E827637A2A5EAAF700E565F4 /* DummyViewController.swift in Sources */,
 				E8A085482A5E312F00CCD708 /* OnboardingContainer.swift in Sources */,
+				E8E466532A62A0C80050C47C /* CurrencyFormatter.swift in Sources */,
 				E8A085502A5E424400CCD708 /* OnboardingViewController.swift in Sources */,
 				E88B2A8F2A5D242500B83D7A /* LoginViewController.swift in Sources */,
 				E85691492A5F0BBA004C2F0B /* UIViewController+Extensions.swift in Sources */,
