@@ -9,10 +9,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let mainViewController = MainViewController()
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        let statusBarFrame = windowScene.statusBarManager?.statusBarFrame ?? .zero
         window = UIWindow(windowScene: windowScene)
         loginViewController.delegate = self
         onboardingController.delegate = self
-        mainViewController.setStatusBar()
+        mainViewController.setStatusBar(frame: statusBarFrame)
         
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().backgroundColor = .appColor
