@@ -1,6 +1,11 @@
 import UIKit
 
+protocol OnboardingContainerConrollerDelegate: AnyObject {
+    func didFinishOnboarding()
+}
 final class OnboardingContainerConroller: UIViewController {
+    weak var delegate: OnboardingContainerConrollerDelegate?
+    
     private let pageViewController: UIPageViewController
     private var pages = [UIViewController]()
     private var currentVC: UIViewController
@@ -77,7 +82,7 @@ private extension OnboardingContainerConroller {
 // MARK: - Actions
 private extension OnboardingContainerConroller {
     @objc func closeButtonTapped() {
-        print("Close button tapped")
+        delegate?.didFinishOnboarding()
     }
 }
 

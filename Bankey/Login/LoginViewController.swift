@@ -1,6 +1,11 @@
 import UIKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func didLogin()
+}
 class LoginViewController: UIViewController {
+    weak var delegate: LoginViewControllerDelegate?
+    
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
     private let loginView = LoginView()
@@ -84,6 +89,11 @@ private extension LoginViewController {
             configure(withMessage: "Username / Password cannot be empty")
         } else if loginView.username == "Kevin" && loginView.password == "Welcome" {
             signinButton.configuration?.showsActivityIndicator = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.loginView.reset()
+                self.signinButton.configuration?.showsActivityIndicator = false
+                self.delegate?.didLogin()
+            }
         } else {
             configure(withMessage: "Incorrect username / password")
         }
