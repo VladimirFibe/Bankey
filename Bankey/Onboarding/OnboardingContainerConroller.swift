@@ -3,21 +3,34 @@ import UIKit
 final class OnboardingContainerConroller: UIViewController {
     private let pageViewController: UIPageViewController
     private var pages = [UIViewController]()
-    var currentVC: UIViewController {
-        didSet {
-            
-        }
-    }
+    var currentVC: UIViewController
+    
+//    {
+//        didSet {
+//            
+//        }
+//    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        let first = FirstViewController()
-        let second = SecondViewController()
-        let third = ThirdViewController()
+        let first = OnboardingViewController(
+            imageName: "delorean",
+            titleText: "Bankey is faster, easier to use, and has a brand new look and feel that will make you feel like you are back in the 80s."
+        )
+        let second = OnboardingViewController(
+            imageName: "world",
+            titleText: "Move your money around the world quickly and securely."
+        )
+        let third = OnboardingViewController(
+            imageName: "thumbs",
+            titleText: "Learn more at www.bankey.com."
+        )
+        
         pages.append(first)
         pages.append(second)
         pages.append(third)
+        
         currentVC = pages.first!
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
