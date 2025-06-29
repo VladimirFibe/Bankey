@@ -3,13 +3,8 @@ import UIKit
 final class OnboardingContainerConroller: UIViewController {
     private let pageViewController: UIPageViewController
     private var pages = [UIViewController]()
-    var currentVC: UIViewController
-    
-//    {
-//        didSet {
-//            
-//        }
-//    }
+    private var currentVC: UIViewController
+    private let closeButton = UIButton(type: .system)
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -41,6 +36,15 @@ final class OnboardingContainerConroller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+        style()
+        layout()
+        
+    }
+}
+
+private extension OnboardingContainerConroller {
+    func setup() {
         view.backgroundColor = .systemPurple
         addChild(pageViewController)
         pageViewController.didMove(toParent: self)
@@ -49,12 +53,31 @@ final class OnboardingContainerConroller: UIViewController {
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         pageViewController.setViewControllers([pages.first!], direction: .forward, animated: false)
         currentVC = pages.first!
+    }
+    
+    func style() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.setTitle("Close", for: [])
+        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .primaryActionTriggered)
+        view.addSubview(closeButton)
+    }
+    
+    func layout() {
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: pageViewController.view.topAnchor),
             view.leadingAnchor.constraint(equalTo: pageViewController.view.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: pageViewController.view.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: pageViewController.view.bottomAnchor)
+            view.bottomAnchor.constraint(equalTo: pageViewController.view.bottomAnchor),
+            
+            closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
+            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 2)
         ])
+    }
+}
+// MARK: - Actions
+private extension OnboardingContainerConroller {
+    @objc func closeButtonTapped() {
+        print("Close button tapped")
     }
 }
 
