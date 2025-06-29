@@ -6,6 +6,14 @@ final class LoginView: UIView {
     private let stackView = UIStackView()
     private let dividerView = UIView()
     
+    var username: String {
+        usernameTextField.text ?? ""
+    }
+    
+    var password: String {
+        passwordTextField.text ?? ""
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         style()
