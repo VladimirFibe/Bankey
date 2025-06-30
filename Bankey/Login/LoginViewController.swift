@@ -3,6 +3,11 @@ import UIKit
 protocol LoginViewControllerDelegate: AnyObject {
     func didLogin()
 }
+
+protocol LogoutDelegate: AnyObject {
+    func didLogout()
+}
+
 class LoginViewController: UIViewController {
     weak var delegate: LoginViewControllerDelegate?
     
@@ -17,6 +22,12 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .systemBackground
         style()
         layout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        loginView.reset()
+        signinButton.configuration?.showsActivityIndicator = false
     }
 }
 
@@ -90,8 +101,6 @@ private extension LoginViewController {
         } else if loginView.username == "Kevin" && loginView.password == "Welcome" {
             signinButton.configuration?.showsActivityIndicator = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.loginView.reset()
-                self.signinButton.configuration?.showsActivityIndicator = false
                 self.delegate?.didLogin()
             }
         } else {

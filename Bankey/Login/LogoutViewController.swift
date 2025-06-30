@@ -1,13 +1,11 @@
 import UIKit
 
-protocol LogoutDelegate: AnyObject {
-    func didLogout()
-}
-
 final class LogoutViewController: UIViewController {
+    
     weak var delegate: LogoutDelegate?
     
     private let logoutButton = UIButton(type: .system)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground

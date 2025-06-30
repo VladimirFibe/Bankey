@@ -19,12 +19,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate: LoginViewControllerDelegate {
     func didLogin() {
-        setRootViewController(onboardingController)
+        if LocalState.hasOnboarded {
+            setRootViewController(logoutViewController)
+        } else {
+            setRootViewController(onboardingController)
+        }
     }
 }
 
 extension SceneDelegate: OnboardingContainerConrollerDelegate {
     func didFinishOnboarding() {
+        LocalState.hasOnboarded = true
         setRootViewController(logoutViewController)
     }
 }
