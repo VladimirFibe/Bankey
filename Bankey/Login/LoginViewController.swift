@@ -13,7 +13,6 @@ class LoginViewController: UIViewController {
 private extension LoginViewController {
     func style() {
         view.backgroundColor = .systemBackground
-        
     }
     
     func layout() {
