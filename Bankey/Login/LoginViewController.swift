@@ -2,6 +2,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     private let loginView = LoginView()
+    private let button = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
