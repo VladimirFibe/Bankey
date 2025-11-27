@@ -3,6 +3,7 @@ import UIKit
 class LoginViewController: UIViewController {
     private let loginView = LoginView()
     private let loginButton = UIButton(type: .system)
+    private let errorMessageLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +21,19 @@ private extension LoginViewController {
         loginButton.configuration?.imagePadding = 8
         loginButton.setTitle("Sign In", for: [])
         loginButton.addTarget(self, action: #selector(loginTapped), for: .primaryActionTriggered)
+        
+        errorMessageLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorMessageLabel.textAlignment = .center
+        errorMessageLabel.textColor = .systemRed
+        errorMessageLabel.isHidden = true
+        errorMessageLabel.numberOfLines = 0
     }
     
     func layout() {
         view.addSubview(loginView)
         view.addSubview(loginButton)
+        view.addSubview(errorMessageLabel)
+        
         NSLayoutConstraint.activate([
             
             // LoginView
@@ -35,13 +44,19 @@ private extension LoginViewController {
             // LoginButton
             loginButton.topAnchor.constraint(equalToSystemSpacingBelow: loginView.bottomAnchor, multiplier: 2),
             loginButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
-            loginButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            loginButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
+            
+            // ErrorMessage
+            errorMessageLabel.topAnchor.constraint(equalToSystemSpacingBelow: loginButton.bottomAnchor, multiplier: 2),
+            errorMessageLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            errorMessageLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
     }
 }
 
 @objc private extension LoginViewController {
     func loginTapped() {
-        print("tapped")
+        errorMessageLabel.text = "Error"
+        errorMessageLabel.isHidden = false
     }
 }
