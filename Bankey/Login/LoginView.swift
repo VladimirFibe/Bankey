@@ -1,7 +1,10 @@
 import UIKit
 
 final class LoginView: UIView {
+    private let stackView = UIStackView()
     private let usernameTextField = UITextField()
+    private let passwordTextField = UITextField()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         style()
@@ -11,10 +14,6 @@ final class LoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: 200, height: 200)
-    }
 }
 
 private extension LoginView {
@@ -22,24 +21,34 @@ private extension LoginView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemOrange
         
-        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        
         usernameTextField.placeholder = "Username"
         usernameTextField.delegate = self
+        
+        passwordTextField.placeholder = "Password"
+        passwordTextField.delegate = self
+        passwordTextField.isSecureTextEntry = true
     }
     
     func layout() {
-        addSubview(usernameTextField)
+        addSubview(stackView)
+        stackView.addArrangedSubview(usernameTextField)
+        stackView.addArrangedSubview(passwordTextField)
         NSLayoutConstraint.activate([
-            usernameTextField.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
-            usernameTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: usernameTextField.trailingAnchor, multiplier: 1)
+            stackView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
+            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
+            bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1)
         ])
     }
 }
 
 extension LoginView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        usernameTextField.endEditing(true)
+        textField.endEditing(true)
         return true
     }
     
