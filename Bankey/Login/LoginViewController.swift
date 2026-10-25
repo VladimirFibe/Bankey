@@ -27,3 +27,6 @@ private extension LoginViewController {
     }
 }
 
+#Preview {
+    LoginViewController()
+}
