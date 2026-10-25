@@ -1,7 +1,10 @@
 import UIKit
 
 final class LoginView: UIView {
+    let stackView = UIStackView()
     let usernameTextField = UITextField()
+    let passwordTextField = UITextField()
+    let dividerView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -12,32 +15,54 @@ final class LoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: 200, height: 200)
-    }
 }
 
 extension LoginView {
     func style() {
+        layer.cornerRadius = 5
+        clipsToBounds = true
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .secondarySystemBackground
+        setupStackView()
         setupUsernameTextField()
+        setupDividerView()
+        setupPasswordTextField()
     }
     
     func layout() {
         
     }
     
+    func setupStackView() {
+        addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
+            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
+            bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1)
+        ])
+    }
+    
     func setupUsernameTextField() {
-        addSubview(usernameTextField)
-        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(usernameTextField)
         usernameTextField.placeholder = "Username"
         usernameTextField.delegate = self
-        
-        NSLayoutConstraint.activate([
-            usernameTextField.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
-            usernameTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: usernameTextField.trailingAnchor, multiplier: 1)
-        ])
+    }
+    
+    func setupPasswordTextField() {
+        stackView.addArrangedSubview(passwordTextField)
+        passwordTextField.placeholder = "Password"
+        passwordTextField.delegate = self
+        passwordTextField.isSecureTextEntry = true
+     }
+    
+    func setupDividerView() {
+        stackView.addArrangedSubview(dividerView)
+        dividerView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        dividerView.backgroundColor = .secondarySystemFill
     }
 }
 
